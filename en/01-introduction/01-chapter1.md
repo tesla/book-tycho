@@ -7,30 +7,6 @@ features and RCP applications. Because Tycho is part of the Maven
 ecosystem, users can leverage the rich Maven ecosystem of plugins for
 code generators, quality analysis tools, and code coverage.
 
-How old is tycho?
-=================
-
-Tycho started a couple of years ago out the need to have the ability to
-build Eclipse plugins using Maven. Tom Huybrechts started the initial
-work on Tycho. Sonatype joined the forces shortly after that. Currently,
-the main contributors to Tycho are SAP, Sonatype, and Intallio.
-
-Where is tycho hosted?
-======================
-
-Tycho is an open source project run by Sonatype. It has recently been
-given to the Eclipse Foundation, where it will be moved in a near
-future. It is being promoted as the build technology of choice to help
-with the long-term support strategy that the Eclipse Foundation is
-putting together.
-
-Currently the Tycho codebase can be found on github:
-[github.com/sonatype/sonatype-tycho](https://github.com/sonatype/sonatype-tycho),
-the users and development mailing lists are available at:
-[tycho-users@lists.sonatype.com](mailto:tycho-users@lists.sonatype.com)
-and bugs can be filed at
-[issues.sonatype.org/browse/TYCHO](https://issues.sonatype.org/browse/TYCHO).
-
 Tycho and other technologies
 ============================
 
