@@ -1,14 +1,8 @@
-Introduction
-============
+# Introduction
 
-Tycho is a set of Maven extensions (aka plugins) dedicated to build OSGi
-bundles, p2 repositories, as well as other Eclipse constructs such as
-features and RCP applications. Because Tycho is part of the Maven
-ecosystem, users can leverage the rich Maven ecosystem of plugins for
-code generators, quality analysis tools, and code coverage.
+Tycho is a set of Maven plugins for building OSGi bundles, plugins, features, update sites, and products. Because Tycho is part of the Maven ecosystem, users can leverage the rich Maven ecosystem of plugins for code generators, quality analysis tools, and code coverage.
 
-Tycho and other technologies
-============================
+# Tycho and other technologies
 
 This section positions Tycho w.r.t other technologies in the context of
 which it is often mentioned.
@@ -346,9 +340,7 @@ projects being built.
         <repository>
           <id>helios</id>
           <layout>p2</layout>
-          <url>http://download.eclipse.org/releases/helios</url>
-                <!-- file URL for faster and offline builds -->
-          <!-- <url>file:/${basedir}/../../helios</url> -->
+          <url>http://download.eclipse.org/releases/juno</url>
         </repository>
       </repositories>
       <build>
