@@ -7,8 +7,7 @@ Tycho is a set of Maven plugins for building OSGi bundles, plugins, features, up
 This section positions Tycho w.r.t other technologies in the context of
 which it is often mentioned.
 
-Eclipse PDE UI / PDE Build PDE is the technology provided by the
-----------------------------------------------------------------
+# Eclipse PDE UI / PDE Build PDE is the technology provided by the
 
 Eclipse Platform team to build bundles, and other Eclipse constructs.
 
@@ -30,12 +29,10 @@ It is composed of two parts:
     manifest.mf, product files, which allows one to reuse PDE UI
     infrastructure.
 
-Maven bundle plugin and Bnd
----------------------------
+# Maven bundle plugin and Bnd
 
 The Maven bundle plugin is a Maven plugin
-([http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html](http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html))
-that uses Bnd
+([http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html](http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html)) that uses Bnd
 ([http://www.aqute.biz/Code/Bnd](http://www.aqute.biz/Code/Bnd)) to
 generate an OSGi manifest from an analysis of the jar classfiles. This
 approach allows the user to specify its dependencies in the pom.xml
@@ -48,8 +45,7 @@ At this point the Maven bundle plugin only deals with the generation of
 manifests and does not produce p2 repositories or understand other
 Eclipse constructs.
 
-p2
---
+# p2
 
 p2 is the codename of Eclipse and OSGi update mechanism. It is not a
 build mechanism. Tycho relates to p2 in three ways.
@@ -65,28 +61,12 @@ build mechanism. Tycho relates to p2 in three ways.
 -   Tycho embeds parts of p2 in order to perform the dependency
     resolution and a few other key operations.
 
-Tycho (Maven) / Hudson / Nexus
-------------------------------
-
-In the bigger picture, Tycho (Maven) is a build engine in the sense that
-it is the entity that actually compiles code and runs tests. It can run
-anywhere, on your local machine or on your Continuous Integration server
-(CI) such as Hudson. Hudson plays the role of a "scheduler" in that it
-triggers the execution of the Tycho build, based on some triggers
-(manual, scheduled, SCM change).
-
-Typically, when run on a CI server, the artifacts being built (for
-example, jars, zip, sources) are made available on a repository manager
-such as Nexus. Beyond just storing those artifacts, a repository manager
-makes available the artifacts for other builds to consume. So to recap,
-a Tycho build runs on a Hudson server, and obtains and publishes
-artifacts from a Nexus server. TO FILL DRAWING
-
 # Who is using Tycho?
 
-Many companies including SAP, Sonatype, ZeroTurnaround, Intallio, … as
-well as open source projects of all sizes and complexity use Tycho in
-production.
+Many companies including SAP, Sonatype, VMware, Tasktop, ZeroTurnaround, as
+well as open source projects of all sizes and complexity use Tycho in production. Tycho is
+the official build too used by the Eclipse Foundation and is rapidly displacing tools like
+Buckminster and PDE Build.
 
 # Building an OSGi bundle / Eclipse plug-in
 
@@ -121,15 +101,15 @@ this section will mostly explain the pom.xml presented below.
       <packaging>eclipse-plugin</packaging>
 
       <properties>
-        <tycho-version>0.11.0</tycho-version>
+        <tycho-version>0.15.0</tycho-version>
       </properties>
 
       <repositories>
         <!-- configure p2 repository to resolve against -->
         <repository>
-          <id>helios</id>
+          <id>juno</id>
           <layout>p2</layout>
-          <url>http://download.eclipse.org/releases/helios</url>
+          <url>http://download.eclipse.org/releases/juno</url>
         </repository>
       </repositories>
 
@@ -137,13 +117,13 @@ this section will mostly explain the pom.xml presented below.
         <plugins>
           <plugin>
             <!-- enable tycho build extension -->
-            <groupId>org.sonatype.tycho</groupId>
+            <groupId>org.eclipse.tycho</groupId>
             <artifactId>tycho-maven-plugin</artifactId>
             <version>${tycho-version}</version>
             <extensions>true</extensions>
           </plugin>
           <plugin>
-            <groupId>org.sonatype.tycho</groupId>
+            <groupId>org.eclipse.tycho</groupId>
             <artifactId>target-platform-configuration</artifactId>
             <version>${tycho-version}</version>
             <configuration>
@@ -155,8 +135,7 @@ this section will mostly explain the pom.xml presented below.
       </build>
     </project>
 
-Identifying what is being built
-===============================
+# Identifying what is being built
 
     <groupId>tycho.tutorial</groupId>
     <artifactId>example1</artifactId>
@@ -190,13 +169,12 @@ being. This repetition can be the cause of build failures when the
 values are not in sync, and it would lead to the following message:
 
     [ERROR] Failed to execute goal
-    org.sonatype.tycho:maven-osgi-packaging-plugin:0.11.0:validate-version
+    org.eclipse.tycho:maven-osgi-packaging-plugin:0.15.0:validate-version
     (default-validate-version) on project example1: Unqualified OSGi
     version 1.0.0.qualifier must match unqualified Maven version
     0.0.1-SNAPSHOT for SNAPSHOT builds -> [Help 1]
 
-The kind of entity being built
-==============================
+# The kind of entity being built
 
 This part of the markup tells Maven that what is being built is an
 Eclipse plugin. This packaging type is not specific to Eclipse and
@@ -205,14 +183,13 @@ types that will be presented in the following chapters.
 
     <packaging>eclipse-plugin</packaging>
 
-Repositories
-============
+# Repositories
 
 In order to satisfy the dependencies expressed in the Manifest.mf and
 thus successfully build the bundle, Tycho needs to access p2
 repositories. The identification of these repositories is done using the
 repository markup as defined by Maven. For example, the following markup
-will cause the Eclipse Helios repository to be used to revolve
+will cause the Eclipse juno repository to be used to revolve
 dependencies. Note that it is important to set the layout to be p2,
 since it is what indicates to Maven that this is not a regular maven
 repository.
@@ -220,14 +197,13 @@ repository.
     <repositories>
       <!-- configure p2 repository to resolve against -->
       <repository>
-        <id>helios</id>
+        <id>juno</id>
         <layout>p2</layout>
-        <url>http://download.eclipse.org/releases/helios</url>
+        <url>http://download.eclipse.org/releases/juno</url>
       </repository>
     </repositories>
 
-The build section
-=================
+# The build section
 
 The build section
 ([http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html](http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html))
@@ -243,9 +219,9 @@ a Maven extension that hooks in Maven at a very low level.
       <plugins>
         ...
         <plugin>
-          <groupId>org.sonatype.tycho</groupId>
+          <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-maven-plugin</artifactId>
-          <version>0.11.0-SNAPSHOT</version>
+          <version>0.15.0-SNAPSHOT</version>
           <extensions>true</extensions>
         </plugin>
 
@@ -256,24 +232,22 @@ Second is the indication that the p2 resolver should be used.
       <plugins>
         ...
         <plugin>
-          <groupId>org.sonatype.tycho</groupId>
+          <groupId>org.eclipse.tycho</groupId>
           <artifactId>target-platform-configuration</artifactId>
-          <version>0.11.0-SNAPSHOT</version>
+          <version>0.15.0-SNAPSHOT</version>
           <configuration>
             <!-- recommended: use p2-based target platform resolver -->
             <resolver>p2</resolver>
           </configuration>
         </plugin>
 
-Controlling the content of the final archive
-============================================
+# Controlling the content of the final archive
 
 The output of this build is a jar. In order to control what is added to
 the final add, Tycho will use the value of the bin.includes property as
 defined in the build.properties.
 
-Executing the build
-===================
+# Executing the build
 
 The execution of the build is trivial, since it only requires an
 installation of Maven 3 and to type in "mvn clean install" in the folder
@@ -292,14 +266,12 @@ our example a file called `example1-1.0.0-SNAPSHOT.jar` can be found.
 The target folder contains other files that have been created as part of
 the build.
 
-Toward a recommended project structure
-======================================
+# Toward a recommended project structure
 
 In this section we are evolving the simplistic example provided in the
 previous section toward a recommended structure for Tycho projects.
 
-Introducing the parent pom
-==========================
+# Introducing the parent pom
 
 Looking at the XML from the previous section, it appears obvious that if
 we had a second plugin to build, the solution would not scale very well
@@ -328,12 +300,12 @@ projects being built.
       <packaging>pom</packaging>
 
       <properties>
-        <tycho-version>0.11.0-SNAPSHOT</tycho-version>
+        <tycho-version>0.15.0-SNAPSHOT</tycho-version>
       </properties>
       <repositories>
         <!-- configure p2 repository to resolve against -->
         <repository>
-          <id>helios</id>
+          <id>juno</id>
           <layout>p2</layout>
           <url>http://download.eclipse.org/releases/juno</url>
         </repository>
@@ -342,13 +314,13 @@ projects being built.
         <plugins>
           <plugin>
             <!-- enable tycho build extension -->
-            <groupId>org.sonatype.tycho</groupId>
+            <groupId>org.eclipse.tycho</groupId>
             <artifactId>tycho-maven-plugin</artifactId>
             <version>${tycho-version}</version>
             <extensions>true</extensions>
           </plugin>
           <plugin>
-            <groupId>org.sonatype.tycho</groupId>
+            <groupId>org.eclipse.tycho</groupId>
             <artifactId>target-platform-configuration</artifactId>
             <version>${tycho-version}</version>
             <configuration>
@@ -400,8 +372,7 @@ those to their pom.xml.
       <packaging>eclipse-plugin</packaging>
     </project>
 
-Introducing the aggregator
-==========================
+# Introducing the aggregator
 
 When several modules need to be built together, they are typically
 combined into a module that is usually referred to as an "aggregator".
@@ -447,11 +418,7 @@ Finally, in this setup the build is usually started at the aggregator
 level. However it is still possible to start the build from any
 sub-project as long as the content depended upon is already available.
 
-Building a feature
-==================
-
-Building features
-=================
+# Building a feature
 
 In this chapter we are showing how to build features. In addition to the
 files normally required by PDE (feature.xml and build.properties), tycho
@@ -490,8 +457,7 @@ However note that this archive does not include the plugins listed in
 the features. The gathering of features and plugins is usually handled
 by the eclipse-repository presented in a following chapter.
 
-Aggregator vs feature
-=====================
+# Aggregator vs feature
 
 What is the difference between the aggregator and the feature?
 
@@ -503,8 +469,7 @@ bundle, a corresponding bundle for tests, and the feature. However the
 feature.xml itself will most likely only refer to the bundles that end
 up being delivered to the final user of the application.
 
-Building a p2 repository
-========================
+# Building a p2 repository
 
 The creation of update site (aka p2 repository) is handled very
 concisely. It only takes a pom.xml with the eclipse-repository packaging
@@ -573,8 +538,7 @@ folder target/repository/ will contained the unzipped form.
       <packaging>eclipse-repository</packaging>
     </project>
 
-Self-contained repositories
-===========================
+# Self-contained repositories
 
 In some cases like RCP applications, you want to make sure that the
 repository you are making available is completely self-contained. That
@@ -606,8 +570,7 @@ it is recommended to use repository references or composite repositories
 ([http://wiki.eclipse.org/Equinox/p2/Composite\_Repositories\_%28new%29](http://wiki.eclipse.org/Equinox/p2/Composite_Repositories_%28new%29))
 or repository references.
 
-Being a good repository host
-============================
+# Being a good repository host
 
 Now that you have created a repository, it worth understanding the
 responsibilities associated with it. Indeed, by making your repository
@@ -629,8 +592,7 @@ stable URL
 
 Good connectivity
 
-Controlling dependencies
-========================
+# Controlling dependencies
 
 This chapter discuss how bundles, features and p2 IUs are made available
 to the projects being build.
@@ -639,16 +601,14 @@ It also worth mentioning that in contrast with what happens in the IDE,
 each project has its own dependencies and could therefore be built
 against a different set of repositories, or target platform.
 
-The source of dependencies
-==========================
+# The source of dependencies
 
 Tycho offers two ways to control the set of bundles, features and p2 IUs
 that are accessible when the dependencies are being resolved: repository
 and target platform. This section introduces how they can both be used
 and analyzes their pros and cons.
 
-Repositories
-------------
+## Repositories
 
 Repositories, defined in the repository tag of the pom.xml (see figure
 XXX TO FILL), offer a simple way to make available a set of bundles and
@@ -656,9 +616,9 @@ features to Tycho. This approach will make available all the elements
 contained in the repository.
 
     <repository>
-      <id>helios</id>
+      <id>juno</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/helios</url>
+      <url>http://download.eclipse.org/releases/juno</url>
     </repository>
 
 Advantages
@@ -673,14 +633,13 @@ Disadvantages
     dependencies being introduced since just adding a reference from a
     bundle will suffice to get a new bundle consumed.
 
-Target platform
----------------
+## Target platform
 
 A target platform identify a set of bundles and features that are made
 available at build time. Target platforms are captured in target
 definition files (.target files) and reuse the format defined by PDE
 (Target Platform
-[http://help.eclipse.org/helios/topic/org.eclipse.pde.doc.user/concepts/target.htm](http://help.eclipse.org/helios/topic/org.eclipse.pde.doc.user/concepts/target.htm)).
+[http://help.eclipse.org/juno/topic/org.eclipse.pde.doc.user/concepts/target.htm](http://help.eclipse.org/juno/topic/org.eclipse.pde.doc.user/concepts/target.htm)).
 The following figure shows a target definition that only makes available
 the content for the JDT feature.
 
@@ -706,8 +665,7 @@ Disadvantages
     platform file can be painful to maintain, especially to update the
     versions being used.
 
-Build stability
-===============
+# Build stability
 
 Whether you are using repositories or target platforms to capture your
 dependencies, both approaches use p2 repositories. Therefore, for build
@@ -725,8 +683,7 @@ To mitigate some of those issues, it is recommended to use a repository
 manager like Nexus to proxy p2 repositories, or to mirror the
 repositories being used (TO FILL link to p2 mirror task).
 
-Building a product / RCP application
-====================================
+# Building a product / RCP application
 
 In order to build an RCP application, Tycho relies the product file used
 by PDE. The build of product is done using the \<eclipse-repository\>
@@ -768,7 +725,7 @@ The result of the build is available in the target folder.
       <build>
         <plugins>
           <plugin>
-            <groupId>org.sonatype.tycho</groupId>
+            <groupId>org.eclipse.tycho</groupId>
             <artifactId>tycho-p2-director-plugin</artifactId>
             <version>${tycho-version}</version>
             <executions>
@@ -793,8 +750,7 @@ The result of the build is available in the target folder.
       </build>
     </project>
 
-Specifying the build environment
-================================
+# Specifying the build environment
 
 Given that RCP applications are platform specific (e.g. Windows, Linux,
 Mac), it is required to define the set of environments for which the
@@ -830,8 +786,7 @@ are those that are supported by Eclipse ([http://TO](http://TO) FILL)
       </environment>
     </environments>
 
-Archive root folder
-===================
+# Archive root folder
 
 By default the root folder used in the created archive is eclipse. In
 order to control this, you can add the following snippet:
@@ -846,8 +801,7 @@ order to control this, you can add the following snippet:
       </products>
     </configuration>
 
-Testing bundles
-===============
+# Testing bundles
 
 Tycho has built-in support to execute "headless", "UI" and "SWTBot"
 JUnit tests. All of these are supported through the
@@ -858,8 +812,7 @@ since tests are normally stored along side with the code being tested,
 whereas the Eclipse convention, followed by Tycho, separates the main
 code from the tests in individual project.
 
-Which tests are executed?
-=========================
+# Which tests are executed?
 
 By default Tycho will execute all the tests found in any package
 contained in the test plugin. This means that the smallest pom.xml for
@@ -878,8 +831,7 @@ maven-osgi-test-plugin
     <testClass>org.eclipse.equinox.p2.tests.AutomatedTests</testClass>
     ]]>
 
-Running UI tests
-================
+# Running UI tests
 
 In order to execute UI tests, some additional configuration is needed to
 tell Tycho to use the appropriate test harness. This can be done by
@@ -889,8 +841,7 @@ adding the following XML markup:
     <useUIHarness>true</useUIHarness>
     ]]>
 
-Runtime execution of the tests
-==============================
+# Runtime execution of the tests
 
 By default, the runtime environment in which the tests are executed is
 only composed of the bundles that are in the transitive closure of the
@@ -922,14 +873,12 @@ done by adding the following configuration:
       </bundleStartLevel>
     ]]>
 
-Other Build Tricks
-==================
+# Other Build Tricks
 
 This chapter discusses topics that are often discussed in the context of
 Tycho such as bundle signing, running quality analysis tools.
 
-Signing bundles
-===============
+# Signing bundles
 
 The signature of bundles and features is recommended for Eclipse
 applications. The signature will be checked at install time by p2.
@@ -937,8 +886,7 @@ applications. The signature will be checked at install time by p2.
 To enable signing, the Maven plugin called maven-jar-signing can be
 used. TO FILL (refernece and sample).
 
-Generating JavaDoc
-==================
+# Generating JavaDoc
 
 Javadoc generation is covered by using the standard maven-javadoc-plugin
 ([http://maven.apache.org/plugins/maven-javadoc-plugin/](http://maven.apache.org/plugins/maven-javadoc-plugin/))
@@ -952,15 +900,14 @@ which will create javadoc for each module in target/apidocs/.
 Note that this does not cause the generation of the javadoc for
 extension and extension points.
 
-Generating source bundles
-=========================
+# Generating source bundles
 
 Source bundle generation is switched on using the following snippet to
 be inserted in the build/plugins section of your (parent) POM:
 
     <!-- enable source bundle generation -->
     <plugin>
-      <groupId>org.sonatype.tycho</groupId>
+      <groupId>org.eclipse.tycho</groupId>
       <artifactId>maven-osgi-source-plugin</artifactId>
       <version>$tycho-version</version>
       <executions>
@@ -979,8 +926,3 @@ SymbolicName is the bundle SymbolicName with ".source" appended.
 Generated source bundles can then be included in a source feature which
 can be created just as any other feature. Automatic source feature
 generation may be added in a later version of Tycho.
-
-Quality analysis tools
-======================
-
-Running PMD Running FindBugs Running Emma (code coverage)
