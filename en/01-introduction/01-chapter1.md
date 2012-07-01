@@ -82,18 +82,13 @@ makes available the artifacts for other builds to consume. So to recap,
 a Tycho build runs on a Hudson server, and obtains and publishes
 artifacts from a Nexus server. TO FILL DRAWING
 
-Who is using Tycho?
-===================
+# Who is using Tycho?
 
 Many companies including SAP, Sonatype, ZeroTurnaround, Intallio, … as
 well as open source projects of all sizes and complexity use Tycho in
 production.
 
-Building an OSGi bundle / Eclipse plug-in
-=========================================
-
-Building an OSGi bundle / Eclipse plug-in
-=========================================
+# Building an OSGi bundle / Eclipse plug-in
 
 In this chapter we are reviewing the simplest - though not most concise
 - way of building an OSGi bundle. The example shown in this section is
