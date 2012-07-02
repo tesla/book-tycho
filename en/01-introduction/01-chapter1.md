@@ -221,7 +221,7 @@ a Maven extension that hooks in Maven at a very low level.
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-maven-plugin</artifactId>
-          <version>0.15.0-SNAPSHOT</version>
+          <version>0.15.0</version>
           <extensions>true</extensions>
         </plugin>
 
@@ -234,7 +234,7 @@ Second, is the indication that the p2 resolver should be used.
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>target-platform-configuration</artifactId>
-          <version>0.15.0-SNAPSHOT</version>
+          <version>0.15.0</version>
           <configuration>
             <!-- recommended: use p2-based target platform resolver -->
             <resolver>p2</resolver>
@@ -300,7 +300,7 @@ projects being built.
       <packaging>pom</packaging>
 
       <properties>
-        <tycho-version>0.15.0-SNAPSHOT</tycho-version>
+        <tycho-version>0.15.0</tycho-version>
       </properties>
       <repositories>
         <!-- configure p2 repository to resolve against -->
