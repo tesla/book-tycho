@@ -189,7 +189,7 @@ In order to satisfy the dependencies expressed in the MANIFEST.MF and
 thus successfully build the bundle, Tycho needs to access p2
 repositories. The identification of these repositories is done using the
 repository markup as defined by Maven. For example, the following markup
-will cause the Eclipse juno repository to be used to revolve
+will cause the Eclipse Juno repository to be used to revolve
 dependencies. Note that it is important to set the layout to be p2,
 since it is what indicates to Maven that this is not a regular maven
 repository.
