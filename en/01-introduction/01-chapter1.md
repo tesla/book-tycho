@@ -261,7 +261,7 @@ successful build will end with the message "BUILD SUCCESS" and a failed
 build with "BUILD FAILURE".
 
 The result of the build is stored in the target folder at the root of
-the plugin being built (see screenshot afterBuild.png). In the case of
+the plugin being built (see screenshot TO FILL afterBuild.png). In the case of
 our example a file called `example1-1.0.0-SNAPSHOT.jar` can be found.
 The target folder contains other files that have been created as part of
 the build.
