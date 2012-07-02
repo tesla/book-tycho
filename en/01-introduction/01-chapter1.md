@@ -164,7 +164,7 @@ The tuple groupId, artifactId, version is also referred to as GAV or
 coordinate.
 
 The duplication of information between the MANIFEST.MF and the pom.xml
-is unfortunate however it is one that we have to live with for the time
+is unfortunate but it is one that we have to live with for the time
 being. This repetition can be the cause of build failures when the
 values are not in sync, and it would lead to the following message:
 
@@ -415,7 +415,7 @@ consists in creating a new bundle with a pom.xml (like the one show
 figure TOFILL) and adding it in the aggregator.
 
 Finally, in this setup the build is usually started at the aggregator
-level. However it is still possible to start the build from any
+level. However, it is still possible to start the build from any
 sub-project as long as the content depended upon is already available.
 
 # Building a feature
@@ -453,7 +453,7 @@ by the value of the bin.include property of the build.properties file.
     </project>
 
 The build will produce the jar for the feature in the target folder.
-However note that this archive does not include the plugins listed in
+Note that this archive does not include the plugins listed in
 the features. The gathering of features and plugins is usually handled
 by the eclipse-repository presented in a following chapter.
 
@@ -465,7 +465,7 @@ The feature is an install time mechanism created by Eclipse to install a
 set of features and plugins together. The aggregator is a build time
 concept created by Maven to aggregate a set of things that need to be
 built together. For example, in an aggregator it is common to find a
-bundle, a corresponding bundle for tests, and the feature. However the
+bundle, a corresponding bundle for tests, and the feature. The
 feature.xml itself will most likely only refer to the bundles that end
 up being delivered to the final user of the application.
 
@@ -687,10 +687,9 @@ repositories being used (TO FILL link to p2 mirror task).
 
 In order to build an RCP application, Tycho relies the product file used
 by PDE. The build of product is done using the \<eclipse-repository\>
-packaging type. However in comparison to what we have seen so far,
-building a product requires a little bit more configuration since a
-product is usually made available as a p2 repository or as ready-to-run
-archive.
+packaging type which requires a little bit more configuration than what we
+have seen so far since a product is usually made available as a p2
+repository or as ready-to-run archive.
 
 Also, another noticeable difference with the typical pattern recommended
 by PDE is that the product file needs to be in a project of its own
@@ -859,7 +858,7 @@ done by using the TO FILL attribute.
 Tycho also allows to specify VM arguments and application arguments.
 
 Finally, it is frequent for OSGi applications such as RCP to rely on the
-usage of start levels. However since those are often custom to the
+usage of start levels. Since these are often custom to the
 application, Tycho needs to be taught which are those and this can be
 done by adding the following configuration:
 
