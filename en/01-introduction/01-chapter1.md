@@ -26,14 +26,14 @@ It is composed of two parts:
     the sense that it provides an alternate way to build plugins and
     other Eclipse artifacts. That being said, Tycho reuses some of the
     files that are being used by PDE Build, such as build.properties,
-    manifest.mf, product files, which allows one to reuse PDE UI
+    MANIFEST.MF, product files, which allows one to reuse PDE UI
     infrastructure.
 
 # Maven bundle plugin and Bnd
 
 The Maven bundle plugin is a Maven plugin
 ([http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html](http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html)) that uses Bnd
-([http://www.aqute.biz/Code/Bnd](http://www.aqute.biz/Code/Bnd)) to
+([http://www.aqute.biz/Bnd/Bnd](http://www.aqute.biz/Bnd/Bnd)) to
 generate an OSGi manifest from an analysis of the jar classfiles. This
 approach allows the user to specify its dependencies in the pom.xml
 rather than the manifest. Because it uses the Maven way of specifying
@@ -65,13 +65,13 @@ build mechanism. Tycho relates to p2 in three ways.
 
 Many companies including SAP, Sonatype, VMware, Tasktop, ZeroTurnaround, as
 well as open source projects of all sizes and complexity use Tycho in production. Tycho is
-the official build too used by the Eclipse Foundation and is rapidly displacing tools like
+the official build tool used by the Eclipse Foundation and is rapidly displacing tools like
 Buckminster and PDE Build.
 
 # Building an OSGi bundle / Eclipse plug-in
 
-In this chapter we are reviewing the simplest - though not most concise
-- way of building an OSGi bundle. The example shown in this section is
+In this chapter we are reviewing the simplest, though not most concise,
+way of building an OSGi bundle. The example shown in this section is
 not meant to be used as a starting point, but used solely in the context
 of an introduction to group together all the relevant bits of
 configuration in one place.
@@ -79,7 +79,7 @@ configuration in one place.
 As shown in the following picture (TO FILL ref to files.png), beside the
 source code, the example contains three relevant files:
 
--   The OSGi Manifest.mf, which captures the dependencies of the bundle
+-   The OSGi MANIFEST.MF, which captures the dependencies of the bundle
     being built.
 
 -   The build.properties, which describes the set of files that will be
@@ -87,7 +87,7 @@ source code, the example contains three relevant files:
 
 -   The pom.xml, which indicates to Maven how to build this project.
 
-Given that Manifest.mf and build.properties are known from PDE users,
+Given that MANIFEST.MF and build.properties are known from PDE users,
 this section will mostly explain the pom.xml presented below.
 
     <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -151,20 +151,20 @@ groupId
 artifactId
 :   artifactId is the name given to what is being built. It needs to be
     a copy of the Bundle-SymbolicName attribute, as found in
-    manifest.mf.
+    MANIFEST.MF.
 
 version
 :   version is the version of the artifact being built. It must match
-    the Bundle-Version attribute, as found in the manifest.mf. A slight
+    the Bundle-Version attribute, as found in the MANIFEST.MF. A slight
     twist here comes from the fact that versions used in manifest end
     with .qualifier and that the one specified in the pom.xml end with
     -SNAPSHOT. For example 1.0.0.qualifier becomes 1.0.0-SNAPSHOT.
 
-The tuple, groupId, artifactId, version is also referred to as GAV or
+The tuple groupId, artifactId, version is also referred to as GAV or
 coordinate.
 
-The duplication of information between the Manifest.mf and the pom.xml
-is unfortunate however it is one that we have to live with for the time
+The duplication of information between the MANIFEST.MF and the pom.xml
+is unfortunate but it is one that we have to live with for the time
 being. This repetition can be the cause of build failures when the
 values are not in sync, and it would lead to the following message:
 
@@ -185,11 +185,11 @@ types that will be presented in the following chapters.
 
 # Repositories
 
-In order to satisfy the dependencies expressed in the Manifest.mf and
+In order to satisfy the dependencies expressed in the MANIFEST.MF and
 thus successfully build the bundle, Tycho needs to access p2
 repositories. The identification of these repositories is done using the
 repository markup as defined by Maven. For example, the following markup
-will cause the Eclipse juno repository to be used to revolve
+will cause the Eclipse Juno repository to be used to revolve
 dependencies. Note that it is important to set the layout to be p2,
 since it is what indicates to Maven that this is not a regular maven
 repository.
@@ -211,7 +211,7 @@ of the pom.xml instructs Maven how to configure the execution of various
 build phases. In this section we are reviewing the boilerplate markup
 that is necessary to configure Tycho.
 
-First, the reference to the tycho-maven-plugin, indicates that Tycho is
+First, the reference to the tycho-maven-plugin indicates that Tycho is
 a Maven extension that hooks in Maven at a very low level.
 
     <build>
@@ -221,11 +221,11 @@ a Maven extension that hooks in Maven at a very low level.
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-maven-plugin</artifactId>
-          <version>0.15.0-SNAPSHOT</version>
+          <version>0.15.0</version>
           <extensions>true</extensions>
         </plugin>
 
-Second is the indication that the p2 resolver should be used.
+Second, is the indication that the p2 resolver should be used.
 
     <build>
       ...
@@ -234,7 +234,7 @@ Second is the indication that the p2 resolver should be used.
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>target-platform-configuration</artifactId>
-          <version>0.15.0-SNAPSHOT</version>
+          <version>0.15.0</version>
           <configuration>
             <!-- recommended: use p2-based target platform resolver -->
             <resolver>p2</resolver>
@@ -244,7 +244,7 @@ Second is the indication that the p2 resolver should be used.
 # Controlling the content of the final archive
 
 The output of this build is a jar. In order to control what is added to
-the final add, Tycho will use the value of the bin.includes property as
+the final build Tycho will use the value of the bin.includes property as
 defined in the build.properties.
 
 # Executing the build
@@ -253,8 +253,8 @@ The execution of the build is trivial, since it only requires an
 installation of Maven 3 and to type in "mvn clean install" in the folder
 that contains the pom.xml.
 
-When the build is running, a lot of information will be displayed in the
-console. From a high level, it will first read the manifest.mf, connect
+When the build is running a lot of information will be displayed in the
+console. From a high level it will first read the MANIFEST.MF, connect
 to repositories, resolve dependencies, download and cache necessary
 bundles from p2 repository, compile and finally create the final jar. A
 successful build will end with the message "BUILD SUCCESS" and a failed
@@ -277,10 +277,10 @@ Looking at the XML from the previous section, it appears obvious that if
 we had a second plugin to build, the solution would not scale very well
 since a lot of XML would have to be duplicated. This duplication problem
 gets solved using the concept of parent POM
-([http://sonatype.com/books/maven-book/reference/pom-relationships-sect-project-inheritance.html](http://sonatype.com/books/maven-book/reference/pom-relationships-sect-project-inheritance.html))
-that exists in Maven. Through inheritance Maven projects can inherit
-values defined in parents, thus allowing several projects to share the
-same configuration and alleviating the need for duplication.
+([http://sonatype.com/books/mvnref-book/reference/pom-relationships-sect-project-relationships.html#pom-relationships-sect-project-inheritance](http://sonatype.com/books/mvnref-book/reference/pom-relationships-sect-project-relationships.html#pom-relationships-sect-project-inheritance))
+that exists in Maven. When a project specifies a parent, it inherits the
+information in the parent project’s POM. It can then override and add to
+the values specified in this parent POM.
 
 The following xml snippet is the complete parent that is derived from
 the previous example. As you can observer, the build section and the
@@ -300,7 +300,7 @@ projects being built.
       <packaging>pom</packaging>
 
       <properties>
-        <tycho-version>0.15.0-SNAPSHOT</tycho-version>
+        <tycho-version>0.15.0</tycho-version>
       </properties>
       <repositories>
         <!-- configure p2 repository to resolve against -->
@@ -415,7 +415,7 @@ consists in creating a new bundle with a pom.xml (like the one show
 figure TOFILL) and adding it in the aggregator.
 
 Finally, in this setup the build is usually started at the aggregator
-level. However it is still possible to start the build from any
+level. However, it is still possible to start the build from any
 sub-project as long as the content depended upon is already available.
 
 # Building a feature
@@ -453,7 +453,7 @@ by the value of the bin.include property of the build.properties file.
     </project>
 
 The build will produce the jar for the feature in the target folder.
-However note that this archive does not include the plugins listed in
+Note that this archive does not include the plugins listed in
 the features. The gathering of features and plugins is usually handled
 by the eclipse-repository presented in a following chapter.
 
@@ -465,7 +465,7 @@ The feature is an install time mechanism created by Eclipse to install a
 set of features and plugins together. The aggregator is a build time
 concept created by Maven to aggregate a set of things that need to be
 built together. For example, in an aggregator it is common to find a
-bundle, a corresponding bundle for tests, and the feature. However the
+bundle, a corresponding bundle for tests, and the feature. The
 feature.xml itself will most likely only refer to the bundles that end
 up being delivered to the final user of the application.
 
@@ -687,10 +687,9 @@ repositories being used (TO FILL link to p2 mirror task).
 
 In order to build an RCP application, Tycho relies the product file used
 by PDE. The build of product is done using the \<eclipse-repository\>
-packaging type. However in comparison to what we have seen so far,
-building a product requires a little bit more configuration since a
-product is usually made available as a p2 repository or as ready-to-run
-archive.
+packaging type which requires a little bit more configuration than what we
+have seen so far since a product is usually made available as a p2
+repository or as ready-to-run archive.
 
 Also, another noticeable difference with the typical pattern recommended
 by PDE is that the product file needs to be in a project of its own
@@ -859,7 +858,7 @@ done by using the TO FILL attribute.
 Tycho also allows to specify VM arguments and application arguments.
 
 Finally, it is frequent for OSGi applications such as RCP to rely on the
-usage of start levels. However since those are often custom to the
+usage of start levels. Since these are often custom to the
 application, Tycho needs to be taught which are those and this can be
 done by adding the following configuration:
 
