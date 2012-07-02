@@ -273,9 +273,9 @@ previous section toward a recommended structure for Tycho projects.
 
 # Introducing the parent pom
 
-Looking at the XML from the previous section, it appears obvious that if
-we had a second plugin to build, the solution would not scale very well
-since a lot of XML would have to be duplicated. This duplication problem
+Looking at the XML from the previous section it appears obvious that if
+we had a second plugin to build the solution would not scale very well
+since a lot of XML would need to be duplicated. This duplication problem
 gets solved using the concept of parent POM
 ([http://sonatype.com/books/mvnref-book/reference/pom-relationships-sect-project-relationships.html#pom-relationships-sect-project-inheritance](http://sonatype.com/books/mvnref-book/reference/pom-relationships-sect-project-relationships.html#pom-relationships-sect-project-inheritance))
 that exists in Maven. When a project specifies a parent, it inherits the
@@ -283,8 +283,8 @@ information in the parent project’s POM. It can then override and add to
 the values specified in this parent POM.
 
 The following xml snippet is the complete parent that is derived from
-the previous example. As you can observer, the build section and the
-repository sections are now moved there since they are common to the
+the previous example. As you can observe, the build section and the
+repository sections are now in the parent since they are common to the
 projects being built.
 
     <?xml version="1.0" encoding="UTF-8"?>
@@ -337,7 +337,7 @@ own packaging type.
 
 The version of Tycho is factored out in a property called tycho-version.
 It is usually a good practice because it makes it easy to consume a new
-version of Tycho without having to update several places Note that this
+version of Tycho without having to update several places. Note that this
 practice of using properties is not only limited to Tycho and is widely
 used in Maven
 ([http://maven.apache.org/guides/introduction/introduction-to-the-pom.html\#Project\_Interpolation](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html#Project_Interpolation)).
