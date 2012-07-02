@@ -33,7 +33,7 @@ It is composed of two parts:
 
 The Maven bundle plugin is a Maven plugin
 ([http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html](http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html)) that uses Bnd
-([http://www.aqute.biz/Code/Bnd](http://www.aqute.biz/Code/Bnd)) to
+([http://www.aqute.biz/Bnd/Bnd](http://www.aqute.biz/Bnd/Bnd)) to
 generate an OSGi manifest from an analysis of the jar classfiles. This
 approach allows the user to specify its dependencies in the pom.xml
 rather than the manifest. Because it uses the Maven way of specifying
@@ -277,7 +277,7 @@ Looking at the XML from the previous section, it appears obvious that if
 we had a second plugin to build, the solution would not scale very well
 since a lot of XML would have to be duplicated. This duplication problem
 gets solved using the concept of parent POM
-([http://sonatype.com/books/maven-book/reference/pom-relationships-sect-project-inheritance.html](http://sonatype.com/books/maven-book/reference/pom-relationships-sect-project-inheritance.html))
+([http://sonatype.com/books/mvnref-book/reference/pom-relationships-sect-project-relationships.html#pom-relationships-sect-project-inheritance](http://sonatype.com/books/mvnref-book/reference/pom-relationships-sect-project-relationships.html#pom-relationships-sect-project-inheritance))
 that exists in Maven. When a project specifies a parent, it inherits the
 information in the parent project’s POM. It can then override and add to
 the values specified in this parent POM.
