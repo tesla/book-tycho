@@ -70,8 +70,8 @@ Buckminster and PDE Build.
 
 # Building an OSGi bundle / Eclipse plug-in
 
-In this chapter we are reviewing the simplest - though not most concise
-- way of building an OSGi bundle. The example shown in this section is
+In this chapter we are reviewing the simplest, though not most concise,
+way of building an OSGi bundle. The example shown in this section is
 not meant to be used as a starting point, but used solely in the context
 of an introduction to group together all the relevant bits of
 configuration in one place.
