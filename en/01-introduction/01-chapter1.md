@@ -278,9 +278,9 @@ we had a second plugin to build, the solution would not scale very well
 since a lot of XML would have to be duplicated. This duplication problem
 gets solved using the concept of parent POM
 ([http://sonatype.com/books/maven-book/reference/pom-relationships-sect-project-inheritance.html](http://sonatype.com/books/maven-book/reference/pom-relationships-sect-project-inheritance.html))
-that exists in Maven. Through inheritance Maven projects can inherit
-values defined in parents, thus allowing several projects to share the
-same configuration and alleviating the need for duplication.
+that exists in Maven. When a project specifies a parent, it inherits the
+information in the parent project’s POM. It can then override and add to
+the values specified in this parent POM.
 
 The following xml snippet is the complete parent that is derived from
 the previous example. As you can observer, the build section and the
