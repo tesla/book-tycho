@@ -26,7 +26,7 @@ It is composed of two parts:
     the sense that it provides an alternate way to build plugins and
     other Eclipse artifacts. That being said, Tycho reuses some of the
     files that are being used by PDE Build, such as build.properties,
-    manifest.mf, product files, which allows one to reuse PDE UI
+    MANIFEST.MF, product files, which allows one to reuse PDE UI
     infrastructure.
 
 # Maven bundle plugin and Bnd
@@ -79,7 +79,7 @@ configuration in one place.
 As shown in the following picture (TO FILL ref to files.png), beside the
 source code, the example contains three relevant files:
 
--   The OSGi Manifest.mf, which captures the dependencies of the bundle
+-   The OSGi MANIFEST.MF, which captures the dependencies of the bundle
     being built.
 
 -   The build.properties, which describes the set of files that will be
@@ -87,7 +87,7 @@ source code, the example contains three relevant files:
 
 -   The pom.xml, which indicates to Maven how to build this project.
 
-Given that Manifest.mf and build.properties are known from PDE users,
+Given that MANIFEST.MF and build.properties are known from PDE users,
 this section will mostly explain the pom.xml presented below.
 
     <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -151,11 +151,11 @@ groupId
 artifactId
 :   artifactId is the name given to what is being built. It needs to be
     a copy of the Bundle-SymbolicName attribute, as found in
-    manifest.mf.
+    MANIFEST.MF.
 
 version
 :   version is the version of the artifact being built. It must match
-    the Bundle-Version attribute, as found in the manifest.mf. A slight
+    the Bundle-Version attribute, as found in the MANIFEST.MF. A slight
     twist here comes from the fact that versions used in manifest end
     with .qualifier and that the one specified in the pom.xml end with
     -SNAPSHOT. For example 1.0.0.qualifier becomes 1.0.0-SNAPSHOT.
@@ -163,7 +163,7 @@ version
 The tuple, groupId, artifactId, version is also referred to as GAV or
 coordinate.
 
-The duplication of information between the Manifest.mf and the pom.xml
+The duplication of information between the MANIFEST.MF and the pom.xml
 is unfortunate however it is one that we have to live with for the time
 being. This repetition can be the cause of build failures when the
 values are not in sync, and it would lead to the following message:
@@ -185,7 +185,7 @@ types that will be presented in the following chapters.
 
 # Repositories
 
-In order to satisfy the dependencies expressed in the Manifest.mf and
+In order to satisfy the dependencies expressed in the MANIFEST.MF and
 thus successfully build the bundle, Tycho needs to access p2
 repositories. The identification of these repositories is done using the
 repository markup as defined by Maven. For example, the following markup
@@ -254,7 +254,7 @@ installation of Maven 3 and to type in "mvn clean install" in the folder
 that contains the pom.xml.
 
 When the build is running, a lot of information will be displayed in the
-console. From a high level, it will first read the manifest.mf, connect
+console. From a high level, it will first read the MANIFEST.MF, connect
 to repositories, resolve dependencies, download and cache necessary
 bundles from p2 repository, compile and finally create the final jar. A
 successful build will end with the message "BUILD SUCCESS" and a failed
