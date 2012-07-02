@@ -211,7 +211,7 @@ of the pom.xml instructs Maven how to configure the execution of various
 build phases. In this section we are reviewing the boilerplate markup
 that is necessary to configure Tycho.
 
-First, the reference to the tycho-maven-plugin, indicates that Tycho is
+First, the reference to the tycho-maven-plugin indicates that Tycho is
 a Maven extension that hooks in Maven at a very low level.
 
     <build>
@@ -225,7 +225,7 @@ a Maven extension that hooks in Maven at a very low level.
           <extensions>true</extensions>
         </plugin>
 
-Second is the indication that the p2 resolver should be used.
+Second, is the indication that the p2 resolver should be used.
 
     <build>
       ...
