@@ -65,7 +65,7 @@ build mechanism. Tycho relates to p2 in three ways.
 
 Many companies including SAP, Sonatype, VMware, Tasktop, ZeroTurnaround, as
 well as open source projects of all sizes and complexity use Tycho in production. Tycho is
-the official build too used by the Eclipse Foundation and is rapidly displacing tools like
+the official build tool used by the Eclipse Foundation and is rapidly displacing tools like
 Buckminster and PDE Build.
 
 # Building an OSGi bundle / Eclipse plug-in
