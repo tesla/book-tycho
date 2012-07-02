@@ -253,8 +253,8 @@ The execution of the build is trivial, since it only requires an
 installation of Maven 3 and to type in "mvn clean install" in the folder
 that contains the pom.xml.
 
-When the build is running, a lot of information will be displayed in the
-console. From a high level, it will first read the MANIFEST.MF, connect
+When the build is running a lot of information will be displayed in the
+console. From a high level it will first read the MANIFEST.MF, connect
 to repositories, resolve dependencies, download and cache necessary
 bundles from p2 repository, compile and finally create the final jar. A
 successful build will end with the message "BUILD SUCCESS" and a failed
