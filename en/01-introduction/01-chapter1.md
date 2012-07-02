@@ -594,8 +594,8 @@ Good connectivity (TO FILL)
 
 # Controlling dependencies
 
-This chapter discuss how bundles, features and p2 IUs are made available
-to the projects being build.
+This chapter discuss how bundles, features and p2 IUs (InstallableUnits)
+are made available to the projects being build.
 
 It also worth mentioning that in contrast with what happens in the IDE,
 each project has its own dependencies and could therefore be built
