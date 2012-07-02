@@ -540,7 +540,7 @@ folder target/repository/ will contained the unzipped form.
 
 # Self-contained repositories
 
-In some cases like RCP applications, you want to make sure that the
+In some cases, like RCP applications, you want to make sure that the
 repository you are making available is completely self-contained. That
 means that for any plugin or feature available in the repository all the
 other plugins and features necessary to install it are also contained in
@@ -560,7 +560,7 @@ Though using this approach is tempting to resolve dependency issues, it
 needs to be clearly understood that the repositories created are much
 larger than those including just your own features since it will capture
 everything from your feature down to OSGi or SWT. These large
-repositories have two consequences, first they are longer to download
+repositories have two consequences, first they take  longer to download
 for your user (since there is more content), but also in versions pre
 eclipse 3.7 (Indigo) will result in a bigger memory footprint during the
 installation.
