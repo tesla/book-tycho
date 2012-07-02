@@ -160,7 +160,7 @@ version
     with .qualifier and that the one specified in the pom.xml end with
     -SNAPSHOT. For example 1.0.0.qualifier becomes 1.0.0-SNAPSHOT.
 
-The tuple, groupId, artifactId, version is also referred to as GAV or
+The tuple groupId, artifactId, version is also referred to as GAV or
 coordinate.
 
 The duplication of information between the MANIFEST.MF and the pom.xml
