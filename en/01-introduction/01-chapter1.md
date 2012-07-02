@@ -244,7 +244,7 @@ Second, is the indication that the p2 resolver should be used.
 # Controlling the content of the final archive
 
 The output of this build is a jar. In order to control what is added to
-the final add, Tycho will use the value of the bin.includes property as
+the final build Tycho will use the value of the bin.includes property as
 defined in the build.properties.
 
 # Executing the build
