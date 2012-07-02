@@ -572,10 +572,10 @@ or repository references.
 
 # Being a good repository host
 
-Now that you have created a repository, it worth understanding the
+Now that you have created a repository, it is worth understanding the
 responsibilities associated with it. Indeed, by making your repository
 available to others, you are providing them something that they can
-start using in their products be it at build time or install time. As
+start using in their products be, it at build time or install time. As
 such, changing the URL of your repository or removing content once it
 has been made widely available can have unforeseen consequences like
 breaking builds or preventing applications to install. To mitigate these
@@ -588,9 +588,9 @@ things, here are a few things that you need to be aware of:
     -   final release or interim build - and how long the content will
         be here for. For example, the eclipse platform states
 
-stable URL
+stable URL (TO FILL)
 
-Good connectivity
+Good connectivity (TO FILL)
 
 # Controlling dependencies
 
