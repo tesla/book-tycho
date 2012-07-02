@@ -335,9 +335,9 @@ projects being built.
 The packaging type of a parent is pom, and each child will specify its
 own packaging type.
 
-The version of Tycho is factored out in a property called tycho-version.
-It is usually a good practice because it makes it easy to consume a new
-version of Tycho without having to update several places. Note that this
+The version of Tycho is factored out into a property called tycho-version.
+This is usually a good practice because it makes it easy to consume a new
+version of Tycho without having to update several places. Note that the
 practice of using properties is not only limited to Tycho and is widely
 used in Maven
 ([http://maven.apache.org/guides/introduction/introduction-to-the-pom.html\#Project\_Interpolation](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html#Project_Interpolation)).
@@ -407,7 +407,7 @@ sort of the dependencies of the projects being built.
 
     </project>
 
-To summarize, we now have two folders for a total of three pom files
+To summarize, we now have two sub-folders for a total of three pom files
 organized as follows: TO FILL
 
 From there on, the addition of a bundle (or any other element) simply
