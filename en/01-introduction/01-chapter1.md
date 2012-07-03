@@ -757,33 +757,41 @@ application needs to be built. This is typically done in the parent
 pom.xml by adding the following markup. The values for os, ws and arch
 are those that are supported by Eclipse ([http://TO](http://TO) FILL)
 
-    <environments>
-      <environment>
-        <os>linux</os>
-        <ws>gtk</ws>
-        <arch>x86</arch>
-      </environment>
-      <environment>
-        <os>linux</os>
-        <ws>gtk</ws>
-        <arch>x86_64</arch>
-      </environment>
-      <environment>
-        <os>win32</os>
-        <ws>win32</ws>
-        <arch>x86</arch>
-      </environment>
-      <environment>
-        <os>win32</os>
-        <ws>win32</ws>
-        <arch>x86_64</arch>
-      </environment>
-      <environment>
-        <os>macosx</os>
-        <ws>cocoa</ws>
-        <arch>x86_64</arch>
-      </environment>
-    </environments>
+    <plugin>
+      <groupId>org.eclipse.tycho</groupId>
+      <artifactId>target-platform-configuration</artifactId>
+      <version>${tycho-version}</version>
+      <configuration>
+        <environments>
+          <environment>
+            <os>linux</os>
+            <ws>gtk</ws>
+            <arch>x86</arch>
+          </environment>
+          <environment>
+            <os>linux</os>
+            <ws>gtk</ws>
+            <arch>x86_64</arch>
+          </environment>
+          <environment>
+            <os>win32</os>
+            <ws>win32</ws>
+            <arch>x86</arch>
+          </environment>
+          <environment>
+            <os>win32</os>
+            <ws>win32</ws>
+            <arch>x86_64</arch>
+          </environment>
+          <environment>
+            <os>macosx</os>
+            <ws>cocoa</ws>
+            <arch>x86_64</arch>
+          </environment>
+        </environments>
+      </configuration>
+    </plugin>
+
 
 # Archive root folder
 
