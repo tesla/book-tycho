@@ -798,15 +798,35 @@ are those that are supported by Eclipse ([http://TO](http://TO) FILL)
 By default the root folder used in the created archive is eclipse. In
 order to control this, you can add the following snippet:
 
-    <!-- (optional) customize the root folder name of the product zip -->
-    <configuration>
-      <products>
-        <product>
-          <id>tychodemo.product</id>
-          <rootFolder>myRCP</rootFolder>
-        </product>
-      </products>
-    </configuration>
+    <plugin>
+      <groupId>org.eclipse.tycho</groupId>
+      <artifactId>tycho-p2-director-plugin</artifactId>
+      <version>${tycho-version}</version>
+      <executions>
+        <execution>
+          <id>materialize-products</id>
+          <goals>
+            <goal>materialize-products</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>archive-products</id>
+          <goals>
+            <goal>archive-products</goal>
+          </goals>
+        </execution>
+      </executions>
+      <!-- (optional) customize the root folder name of the product zip -->
+      <configuration>
+        <products>
+          <product>
+            <!-- This id needs to match your id in your .product file -->
+            <id>tychodemo.product</id>
+            <rootFolder>myRCP</rootFolder>
+          </product>
+        </products>
+      </configuration>
+    </plugin>
 
 # Testing bundles
 
