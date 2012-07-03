@@ -880,7 +880,7 @@ execution won’t be available. Second, bugs resulting from the potential
 integration will not be caught.
 
 To address these scenarios, Tycho allows to specify additional
-dependencies that must be compose the runtime environment. This can be
+dependencies that must be included in the runtime environment. This can be
 done by using the TO FILL attribute.
 
 Tycho also allows to specify VM arguments and application arguments.
