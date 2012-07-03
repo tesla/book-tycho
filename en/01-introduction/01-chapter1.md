@@ -261,7 +261,7 @@ successful build will end with the message "BUILD SUCCESS" and a failed
 build with "BUILD FAILURE".
 
 The result of the build is stored in the target folder at the root of
-the plugin being built (see screenshot afterBuild.png). In the case of
+the plugin being built (see screenshot TO FILL afterBuild.png). In the case of
 our example a file called `example1-1.0.0-SNAPSHOT.jar` can be found.
 The target folder contains other files that have been created as part of
 the build.
@@ -273,9 +273,9 @@ previous section toward a recommended structure for Tycho projects.
 
 # Introducing the parent pom
 
-Looking at the XML from the previous section, it appears obvious that if
-we had a second plugin to build, the solution would not scale very well
-since a lot of XML would have to be duplicated. This duplication problem
+Looking at the XML from the previous section it appears obvious that if
+we had a second plugin to build the solution would not scale very well
+since a lot of XML would need to be duplicated. This duplication problem
 gets solved using the concept of parent POM
 ([http://sonatype.com/books/mvnref-book/reference/pom-relationships-sect-project-relationships.html#pom-relationships-sect-project-inheritance](http://sonatype.com/books/mvnref-book/reference/pom-relationships-sect-project-relationships.html#pom-relationships-sect-project-inheritance))
 that exists in Maven. When a project specifies a parent, it inherits the
@@ -283,8 +283,8 @@ information in the parent project’s POM. It can then override and add to
 the values specified in this parent POM.
 
 The following xml snippet is the complete parent that is derived from
-the previous example. As you can observer, the build section and the
-repository sections are now moved there since they are common to the
+the previous example. As you can observe, the build section and the
+repository sections are now in the parent since they are common to the
 projects being built.
 
     <?xml version="1.0" encoding="UTF-8"?>
@@ -335,9 +335,9 @@ projects being built.
 The packaging type of a parent is pom, and each child will specify its
 own packaging type.
 
-The version of Tycho is factored out in a property called tycho-version.
-It is usually a good practice because it makes it easy to consume a new
-version of Tycho without having to update several places Note that this
+The version of Tycho is factored out into a property called tycho-version.
+This is usually a good practice because it makes it easy to consume a new
+version of Tycho without having to update several places. Note that the
 practice of using properties is not only limited to Tycho and is widely
 used in Maven
 ([http://maven.apache.org/guides/introduction/introduction-to-the-pom.html\#Project\_Interpolation](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html#Project_Interpolation)).
@@ -407,7 +407,7 @@ sort of the dependencies of the projects being built.
 
     </project>
 
-To summarize, we now have two folders for a total of three pom files
+To summarize, we now have two sub-folders for a total of three pom files
 organized as follows: TO FILL
 
 From there on, the addition of a bundle (or any other element) simply
@@ -540,7 +540,7 @@ folder target/repository/ will contained the unzipped form.
 
 # Self-contained repositories
 
-In some cases like RCP applications, you want to make sure that the
+In some cases, like RCP applications, you want to make sure that the
 repository you are making available is completely self-contained. That
 means that for any plugin or feature available in the repository all the
 other plugins and features necessary to install it are also contained in
@@ -560,7 +560,7 @@ Though using this approach is tempting to resolve dependency issues, it
 needs to be clearly understood that the repositories created are much
 larger than those including just your own features since it will capture
 everything from your feature down to OSGi or SWT. These large
-repositories have two consequences, first they are longer to download
+repositories have two consequences, first they take  longer to download
 for your user (since there is more content), but also in versions pre
 eclipse 3.7 (Indigo) will result in a bigger memory footprint during the
 installation.
@@ -572,10 +572,10 @@ or repository references.
 
 # Being a good repository host
 
-Now that you have created a repository, it worth understanding the
+Now that you have created a repository, it is worth understanding the
 responsibilities associated with it. Indeed, by making your repository
 available to others, you are providing them something that they can
-start using in their products be it at build time or install time. As
+start using in their products be, it at build time or install time. As
 such, changing the URL of your repository or removing content once it
 has been made widely available can have unforeseen consequences like
 breaking builds or preventing applications to install. To mitigate these
@@ -588,14 +588,14 @@ things, here are a few things that you need to be aware of:
     -   final release or interim build - and how long the content will
         be here for. For example, the eclipse platform states
 
-stable URL
+stable URL (TO FILL)
 
-Good connectivity
+Good connectivity (TO FILL)
 
 # Controlling dependencies
 
-This chapter discuss how bundles, features and p2 IUs are made available
-to the projects being build.
+This chapter discuss how bundles, features and p2 IUs (InstallableUnits)
+are made available to the projects being built.
 
 It also worth mentioning that in contrast with what happens in the IDE,
 each project has its own dependencies and could therefore be built
@@ -685,7 +685,7 @@ repositories being used (TO FILL link to p2 mirror task).
 
 # Building a product / RCP application
 
-In order to build an RCP application, Tycho relies the product file used
+In order to build an RCP application, Tycho relies on the product file used
 by PDE. The build of product is done using the \<eclipse-repository\>
 packaging type which requires a little bit more configuration than what we
 have seen so far since a product is usually made available as a p2
@@ -757,48 +757,76 @@ application needs to be built. This is typically done in the parent
 pom.xml by adding the following markup. The values for os, ws and arch
 are those that are supported by Eclipse ([http://TO](http://TO) FILL)
 
-    <environments>
-      <environment>
-        <os>linux</os>
-        <ws>gtk</ws>
-        <arch>x86</arch>
-      </environment>
-      <environment>
-        <os>linux</os>
-        <ws>gtk</ws>
-        <arch>x86_64</arch>
-      </environment>
-      <environment>
-        <os>win32</os>
-        <ws>win32</ws>
-        <arch>x86</arch>
-      </environment>
-      <environment>
-        <os>win32</os>
-        <ws>win32</ws>
-        <arch>x86_64</arch>
-      </environment>
-      <environment>
-        <os>macosx</os>
-        <ws>cocoa</ws>
-        <arch>x86_64</arch>
-      </environment>
-    </environments>
+    <plugin>
+      <groupId>org.eclipse.tycho</groupId>
+      <artifactId>target-platform-configuration</artifactId>
+      <version>${tycho-version}</version>
+      <configuration>
+        <environments>
+          <environment>
+            <os>linux</os>
+            <ws>gtk</ws>
+            <arch>x86</arch>
+          </environment>
+          <environment>
+            <os>linux</os>
+            <ws>gtk</ws>
+            <arch>x86_64</arch>
+          </environment>
+          <environment>
+            <os>win32</os>
+            <ws>win32</ws>
+            <arch>x86</arch>
+          </environment>
+          <environment>
+            <os>win32</os>
+            <ws>win32</ws>
+            <arch>x86_64</arch>
+          </environment>
+          <environment>
+            <os>macosx</os>
+            <ws>cocoa</ws>
+            <arch>x86_64</arch>
+          </environment>
+        </environments>
+      </configuration>
+    </plugin>
+
 
 # Archive root folder
 
 By default the root folder used in the created archive is eclipse. In
 order to control this, you can add the following snippet:
 
-    <!-- (optional) customize the root folder name of the product zip -->
-    <configuration>
-      <products>
-        <product>
-          <id>tychodemo.product</id>
-          <rootFolder>myRCP</rootFolder>
-        </product>
-      </products>
-    </configuration>
+    <plugin>
+      <groupId>org.eclipse.tycho</groupId>
+      <artifactId>tycho-p2-director-plugin</artifactId>
+      <version>${tycho-version}</version>
+      <executions>
+        <execution>
+          <id>materialize-products</id>
+          <goals>
+            <goal>materialize-products</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>archive-products</id>
+          <goals>
+            <goal>archive-products</goal>
+          </goals>
+        </execution>
+      </executions>
+      <!-- (optional) customize the root folder name of the product zip -->
+      <configuration>
+        <products>
+          <product>
+            <!-- This id needs to match your id in your .product file -->
+            <id>tychodemo.product</id>
+            <rootFolder>myRCP</rootFolder>
+          </product>
+        </products>
+      </configuration>
+    </plugin>
 
 # Testing bundles
 
@@ -852,16 +880,23 @@ execution won’t be available. Second, bugs resulting from the potential
 integration will not be caught.
 
 To address these scenarios, Tycho allows to specify additional
-dependencies that must be compose the runtime environment. This can be
+dependencies that must be included in the runtime environment. This can be
 done by using the TO FILL attribute.
 
+# VM arguments and application arguments
+
 Tycho also allows to specify VM arguments and application arguments.
+
+TO FILL
+
+# OSGi Start Levels
 
 Finally, it is frequent for OSGi applications such as RCP to rely on the
 usage of start levels. Since these are often custom to the
 application, Tycho needs to be taught which are those and this can be
 done by adding the following configuration:
 
+TO FILL (which plugin needs this configuration)
     <![CDATA[
       <bundleStartLevel>
         <bundle>
