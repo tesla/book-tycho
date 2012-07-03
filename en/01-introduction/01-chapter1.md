@@ -883,13 +883,20 @@ To address these scenarios, Tycho allows to specify additional
 dependencies that must be included in the runtime environment. This can be
 done by using the TO FILL attribute.
 
+# VM arguments and application arguments
+
 Tycho also allows to specify VM arguments and application arguments.
+
+TOP FILL
+
+# OSGi Start Levels
 
 Finally, it is frequent for OSGi applications such as RCP to rely on the
 usage of start levels. Since these are often custom to the
 application, Tycho needs to be taught which are those and this can be
 done by adding the following configuration:
 
+TO FILL (which plugin needs this configuration)
     <![CDATA[
       <bundleStartLevel>
         <bundle>
