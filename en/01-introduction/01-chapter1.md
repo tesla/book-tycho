@@ -685,7 +685,7 @@ repositories being used (TO FILL link to p2 mirror task).
 
 # Building a product / RCP application
 
-In order to build an RCP application, Tycho relies the product file used
+In order to build an RCP application, Tycho relies on the product file used
 by PDE. The build of product is done using the \<eclipse-repository\>
 packaging type which requires a little bit more configuration than what we
 have seen so far since a product is usually made available as a p2
@@ -887,7 +887,7 @@ done by using the TO FILL attribute.
 
 Tycho also allows to specify VM arguments and application arguments.
 
-TOP FILL
+TO FILL
 
 # OSGi Start Levels
 
