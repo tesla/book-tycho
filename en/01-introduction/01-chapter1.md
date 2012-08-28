@@ -943,7 +943,7 @@ be inserted in the build/plugins section of your (parent) POM:
     <plugin>
       <groupId>org.eclipse.tycho</groupId>
       <artifactId>maven-osgi-source-plugin</artifactId>
-      <version>$tycho-version</version>
+      <version>${tycho-version}</version>
       <executions>
         <execution>
           <id>plugin-source</id>
